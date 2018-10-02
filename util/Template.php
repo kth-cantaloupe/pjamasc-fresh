@@ -2,7 +2,7 @@
 class Template {
   private $data;
 
-  public static function render($template, $data) {
+  public static function render($template, $data = []) {
     $smarty = new Smarty();
 		$smarty->setTemplateDir('../view');
 		$smarty->setCompileDir('../view/compiled');
