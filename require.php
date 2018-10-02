@@ -5,6 +5,7 @@ require 'vendor/autoload.php';
 
 require 'util/Template.php';
 require 'util/Authentication.php';
+require 'util/Arrays.php';
 
 require 'integration/Database.php';
 
