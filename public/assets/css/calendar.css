@@ -1,0 +1,99 @@
+.calendar {
+	border-top: black solid 1px;
+	border-bottom: black solid 1px;
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 12pt;
+	margin-top: 10px;
+}
+
+.calendar-week-days div {
+	float: left;
+	width: 14.286%;
+	text-align: center;
+	font-family: 'Palanquin Dark', sans-serif;
+	padding: 10px 0;
+}
+
+.calendar-week {
+	clear: both;
+	border-top: black solid 1px;
+}
+
+.calendar-day {
+	float: left;
+	width: 14.286%;
+	height: 80px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.calendar-day.is-today {
+	background-color: #8bc172;
+}
+
+.calendar-day.not-current-month {
+	background-color: lightgray;
+}
+
+.calendar-day>.day-of-week {
+	display: none;
+}
+
+.calendar-image {
+	color: black;
+}
+
+.calendar-image img {
+	max-width: 70%;
+	max-height: 70px;
+	float: right;
+}
+
+.calendar-image span {
+	display: none;
+	float: right;
+	text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+	.calendar {
+		border-top: none;
+		border-bottom: lightgray dashed 1px;
+	}
+
+	.calendar-week-days {
+		display: none;
+	}
+
+	.calendar-week {
+		border-top: none;
+	}
+
+	.calendar-day {
+		float: none;
+		width: auto;
+		height: auto;
+		padding: 10px 0;
+		border-top: lightgray dashed 1px;
+	}
+
+	.calendar-day>.day-of-month {
+		font-weight: 700;
+	}
+
+	.calendar-day>.day-of-week {
+		display: inline;
+	}
+
+	.calendar-day.not-current-month {
+		display: none;
+	}
+
+	.calendar-image img {
+		display: none;
+	}
+
+	.calendar-image span {
+		display: inline;
+	}
+}
