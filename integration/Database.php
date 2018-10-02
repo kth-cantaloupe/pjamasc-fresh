@@ -65,6 +65,29 @@ class Database {
     return $rfps;
   }
 
+  public function getAllEvents($year = null, $month = null) {
+    $sql = 'SELECT * FROM event';
+
+    if ($year !== null && $month !== null)
+      $sql .= ' WHERE YEAR(event_date) = ? AND MONTH(event_date) = ?';
+
+    $sql .= ' ORDER BY event_date ASC';
+
+    $stmt = $this->mysqli->prepare($sql);
+
+    if ($year !== null && $month !== null)
+      $stmt->bind_param('ii', $year, $month);
+
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    $events = [];
+    while ($row = $res->fetch_array(MYSQLI_ASSOC))
+      $events[] = new Event($row);
+
+    return $events;
+  }
+
   public function getInstance() {
     if (self::$instance == null)
       self::$instance = new Database();

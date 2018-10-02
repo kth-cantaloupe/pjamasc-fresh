@@ -8,3 +8,4 @@ require 'model/Product.php';
 require 'model/Review.php';
 require 'model/RFP.php';
 require 'model/User.php';
+require 'model/Event.php';
