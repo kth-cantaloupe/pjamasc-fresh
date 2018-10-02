@@ -1,6 +1,8 @@
 <?php
 require 'vendor/autoload.php';
 
+require 'util/Template.php';
+
 require 'integration/Database.php';
 
 require 'model/Info.php';
