@@ -5,6 +5,7 @@
     <script src="assets/js/pjamasc.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/pjamasc.css">
+    {block name="stylesheets"}{/block}
     <title>{block name="title"}{/block}</title>
   </head>
   <body>
