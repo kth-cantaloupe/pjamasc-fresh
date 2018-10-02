@@ -3,6 +3,7 @@
   <head>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/pjamasc.js"></script>
+    {block name="scripts"}{/block}
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/pjamasc.css">
     {block name="stylesheets"}{/block}
@@ -16,6 +17,7 @@
           <li{if isset($highlightedMenuItem) && $highlightedMenuItem === 'product_list'} class="active"{/if}><a href="product_list.php">Products</a></li>
           <li{if isset($highlightedMenuItem) && $highlightedMenuItem === 'calendar'} class="active"{/if}><a href="calendar.php">Calendar</a></li>
           <li{if isset($highlightedMenuItem) && $highlightedMenuItem === 'contact'} class="active"{/if}><a href="contact.php">Contact</a></li>
+          <li{if isset($highlightedMenuItem) && $highlightedMenuItem === 'about'} class="active"{/if}><a href="about.php">About</a></li>
         </ul>
         {if !Authentication::user()}
           <form action="#" id="login-form" novalidate>

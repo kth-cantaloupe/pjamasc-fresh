@@ -100,6 +100,12 @@ class Database {
     return $events;
   }
 
+  public function updateInfo($info, $value) {
+    $stmt = $this->mysqli->prepare('UPDATE info SET info_value = ? WHERE info_id = ?');
+    $stmt->bind_param('si', $value, $info);
+    $stmt->execute();
+  }
+
   public function getInstance() {
     if (self::$instance == null)
       self::$instance = new Database();
