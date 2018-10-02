@@ -5,6 +5,7 @@ class Database {
 
   public function __construct() {
     $this->mysqli = new mysqli('localhost', 'pjamasc', 'f2msaS9QKyplfwOh', 'pjamasc');
+    $this->mysqli->set_charset('utf8');
   }
 
   public function getUserById($id) {

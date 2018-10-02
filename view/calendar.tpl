@@ -26,6 +26,10 @@
 						<div class="calendar-day{if !$day->isThisMonth} not-current-month{/if}">
 							<span class="day-of-month">{$day->day}</span>
 							<span class="day-of-week">{$day->weekday}</span>
+
+							{if $day->event}
+								<div class="event">{$day->event->title}</div>
+							{/if}
 						</div>
 					{/foreach}
 				</div>

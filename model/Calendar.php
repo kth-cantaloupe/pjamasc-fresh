@@ -41,10 +41,12 @@ class Calendar {
 		for ($i=0; $i<7; $i++) {
 			$d = new \stdClass();
 			$d->weekday = self::WEEKDAYS[$i];
+			$d->date = null;
 
 			if ($i > $startWeekday - 2) {
 				$d->day = $day++;
 				$d->isThisMonth = true;
+				$d->date = sprintf('%s-%02d-%02d', $this->year, $this->month->n + 1, $d->day);
 			} else {
 				$d->day = $numDaysPrevMonth - $startWeekday + $i + 2;
 				$d->isThisMonth = false;
@@ -68,6 +70,7 @@ class Calendar {
 			$d->day = $day++;
 			$d->weekday = self::WEEKDAYS[$weekday];
 			$d->isThisMonth = true;
+			$d->date = sprintf('%s-%02d-%02d', $this->year, $this->month->n + 1, $d->day);
 
 			$this->weeks[$weekIndex][] = $d;
 		}
@@ -82,6 +85,7 @@ class Calendar {
 			$d->weekday = self::WEEKDAYS[$i];
 			$d->isThisMonth = false;
 			$d->isToday = false;
+			$d->date = null;
 
 			$this->weeks[$weekIndex][] = $d;
 		}
