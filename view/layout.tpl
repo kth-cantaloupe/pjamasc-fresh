@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/pjamasc.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/pjamasc.css">
     <title>{block name="title"}{/block}</title>
@@ -14,11 +16,20 @@
           <li{if isset($highlightedMenuItem) && $highlightedMenuItem === 'calendar'} class="active"{/if}><a href="calendar.php">Calendar</a></li>
           <li{if isset($highlightedMenuItem) && $highlightedMenuItem === 'contact'} class="active"{/if}><a href="contact.php">Contact</a></li>
         </ul>
-        <form action="#" id="login-form">
-          <input type="email" class="login-form-input" placeholder="E-mail" maxlength="60">
-          <input type="password" class="login-form-input" placeholder="Password" maxlength="72">
-          <input type="submit" value="Log in">
-        </form>
+        {if !Authentication::user()}
+          <form action="#" id="login-form" novalidate>
+            <input type="email" id="login-email" class="login-form-input" placeholder="E-mail" maxlength="60">
+            <input type="password" id="login-password" class="login-form-input" placeholder="Password" maxlength="72">
+            <input type="submit" value="Log in">
+          </form>
+        {else}
+          <div id="user-menu">
+            Logged in as {Authentication::user()->name|escape}.
+            <form action="#" id="logout-form" novalidate>
+              <input type="submit" value="Log out">
+            </form>
+          </div>
+        {/if}
         <div style="clear:both"></div>
       </div>
     </nav>

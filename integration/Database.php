@@ -7,9 +7,21 @@ class Database {
     $this->mysqli = new mysqli('localhost', 'pjamasc', 'f2msaS9QKyplfwOh', 'pjamasc');
   }
 
+  public function getUserById($id) {
+    $stmt = $this->mysqli->prepare('SELECT * FROM user WHERE user_id = ?');
+    $stmt->bind_param('i', $id);
+
+    return $this->getUserByStmt($stmt);
+  }
+
   public function getUserByEmail($email) {
     $stmt = $this->mysqli->prepare('SELECT * FROM user WHERE user_email = ?');
     $stmt->bind_param('s', $email);
+
+    return $this->getUserByStmt($stmt);
+  }
+
+  private function getUserByStmt($stmt) {
     $stmt->execute();
     $res = $stmt->get_result();
 
