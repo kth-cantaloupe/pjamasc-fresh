@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2018 at 09:13 AM
+-- Generation Time: Oct 03, 2018 at 10:12 AM
 -- Server version: 5.7.23-0ubuntu0.16.04.1
 -- PHP Version: 7.2.9-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -51,7 +51,7 @@ INSERT INTO `event` (`event_date`, `event_title`) VALUES
 CREATE TABLE `info` (
   `info_id` int(11) NOT NULL,
   `info_title` varchar(60) COLLATE utf8_swedish_ci NOT NULL,
-  `info_value` varchar(60) COLLATE utf8_swedish_ci NOT NULL,
+  `info_value` text COLLATE utf8_swedish_ci NOT NULL,
   `info_weight` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
@@ -61,7 +61,8 @@ CREATE TABLE `info` (
 
 INSERT INTO `info` (`info_id`, `info_title`, `info_value`, `info_weight`) VALUES
 (1, 'Telefonnummer', '08 555 55 55', 0),
-(2, 'E-postadress', 'info@pjamasc.se', 1);
+(2, 'E-postadress', 'info@pjamasc.se', 1),
+(3, 'Besökadress', 'ZZZZZZZZ', 2);
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `info`
 --
 ALTER TABLE `info`
-  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product`
