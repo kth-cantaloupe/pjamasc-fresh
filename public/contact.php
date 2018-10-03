@@ -11,7 +11,7 @@ $formFields = [
   'password-confirmation'
 ];
 
-if (Arrays::isset($_POST, $formFields) && isset($_FILES['rfp'])) {
+if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
   die('TODO: Handle user registration and RFP upload');
 }
 
