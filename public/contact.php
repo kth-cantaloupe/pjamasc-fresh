@@ -12,68 +12,37 @@ if(!Authentication::user()){
     'password',
     'password-confirmation',
     'notes'
-    ];
-  } else {
+  ];
+} else {
   $formFields = [
-    'notes'
-    ];
-  }
-
-<<<<<<< HEAD
-  if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
-      if(!Authentication::user()){
-        $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost"=>12]), "uncomfirmed_customer");
-      } else {
-        $userid = Authentication::user()->id;
-      }
-
-      if($userid === false) {
-        $errors[] = "You are already registerd as a user. Please log in to post an RFP";
-      } else {
-          Database::getInstance()->storeRFP($userid, $_POST['notes']);
-      }
-  }
-
-  $rfps = null;
-  if(Authentication::admin()){
-    $rfps = Database::getInstance()->getAllRFPs();
-  }
-=======
-if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
-    $password = $_POST['password'];
-    $name = $_POST['full-name'];
-    $companyName = $_POST['company-name'];
-    $email = $_POST['email-address'];
-    $phoneNumber = $_POST['company-no'];
-    $message = $_POST['notes'];
-    $file = $_FILES['rfp'];
-    if (approveFile($file)) {
-        // On success
-        if(handleRegistration( $password,$name, $companyName, $email, $phoneNumber, $message, $file)) {
-            echo $_SESSION[success];
-            //$_SESSION[success] = "";
-        }
-        else{
-            echo $_SESSION[error];
-            //$_SESSION[error] = "";
-        }
-
-    }
-    // On failure
-    else {
-        echo $_SESSION[error];
-        //$_SESSION[error] = "";
-    }
+  'notes'
+  ];
 }
->>>>>>> 7f87c9bc0a750a2512c2632b1d6f259ef2f07392
+
+if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
+  if(!Authentication::user()){
+    $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost"=>12]), "uncomfirmed_customer");
+  } else {
+    $userid = Authentication::user()->id;
+  }
+
+  if($userid === false) {
+    $errors[] = "You are already registerd as a user. Please log in to post an RFP";
+  } else {
+      Database::getInstance()->storeRFP($userid, $_POST['notes']);
+  }
+}
+
+$rfps = null;
+if(Authentication::admin()){
+  $rfps = Database::getInstance()->getAllRFPs();
+}
 
 Template::render('contact.tpl', [
   'highlightedMenuItem' => 'contact',
   'errors' => $errors,
   'RFPs' => $rfps
 ]);
-
-
 
 function handleRegistration($password,$name,$companyName,$email,$phoneNumber,$message,$file){
     $exists=  false; //CHECK USER DBCALL
