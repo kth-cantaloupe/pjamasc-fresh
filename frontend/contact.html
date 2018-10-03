@@ -50,65 +50,127 @@
         <div id="contact-page" class="container">
             <h1>Contact form</h1>
             <hr>
-            <form action="contact.php" method="POST" enctype="multipart/form-data">
-                <div class="all-form-groups">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-company-name">Company Name</label>
-                            <input type="text" id="register-company-name" name="company-name" class="form-control">
+            <div id="contact-form" class="container">
+                <form action="contact.php" method="POST" enctype="multipart/form-data">
+                    <div class="all-form-groups">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-company-name">Company Name</label>
+                                <input type="text" id="register-company-name" name="company-name" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-company-no">Company Registration Number</label>
-                            <input type="text" id="register-company-no" name="company-no" class="form-control">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-company-no">Company Registration Number</label>
+                                <input type="text" id="register-company-no" name="company-no" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-full-name">Full Name</label>
+                                <input type="text" id="register-full-name" name="full-name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-telephone-number">Telephone Number</label>
+                                <input type="text" id="register-telephone-number" name="telephone-number" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-email-address">Email Address</label>
+                                <input type="email" id="register-email-address" name="email-address" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-password">Password</label>
+                                <input type="text" id="register-password" name="password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-password-confirmation">Confirm Password</label>
+                                <input type="text" id="register-password-confirmation" name="password-confirmation" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="register-rfp">Request For Proposal (*.pdf)</label>
+                                <input type="file" id="register-rfp" name="rfp" accept="application/pdf" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <button type="submit" name="submit" class="btn btn-primary">Register User</button>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-full-name">Full Name</label>
-                            <input type="text" id="register-full-name" name="full-name" class="form-control">
+                </form>
+            </div>
+            <div id="admin-contact">
+                <h1>RFPs</h1>
+                <hr>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 rfp">
+                    <div class="rfp-inner row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-id">
+                            <p><span class="bold">ID:</span> 20</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-creation">
+                            <p>Created on 2018-09-20</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-owner-name">
+                            <p><span class="bold">Contact:</span> Jacob Jacobsson</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-owner-orgname">
+                            <p><span class="bold">Organization:</span> Bajs Inc</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rfp-notes">
+                            <p><span class="bold">RFP Notes:</span></p>
+                            <p>
+                                Pellentesque et sapien in arcu venenatis commodo. Vestibulum pulvinar, nisi quis dignissim hendrerit, enim lectus tincidunt metus, id volutpat urna ligula ac neque. Mauris sed rutrum ipsum. Aenean hendrerit mollis velit id congue. Nunc ante erat, cursus
+                                eu molestie et, condimentum nec risus. Vivamus iaculis dolor pellentesque mi ultricies, eget sollicitudin justo viverra. Sed ut arcu non leo rhoncus semper. Nullam consequat lacus non ante vestibulum accumsan. Nam nec erat
+                                enim.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-telephone-number">Telephone Number</label>
-                            <input type="text" id="register-telephone-number" name="telephone-number" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-email-address">Email Address</label>
-                            <input type="email" id="register-email-address" name="email-address" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-password">Password</label>
-                            <input type="text" id="register-password" name="password" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-password-confirmation">Confirm Password</label>
-                            <input type="text" id="register-password-confirmation" name="password-confirmation" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <label for="register-rfp">Request For Proposal (*.pdf)</label>
-                            <input type="file" id="register-rfp" name="rfp" accept="application/pdf" class="form-control">
-                        </div>
-                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <button type="submit" name="submit" class="btn btn-primary">Register User</button>
-                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 rfp">
+                    <div class="rfp-inner row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-id">
+                            <p><span class="bold">ID:</span> 20</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-creation">
+                            <p>Created on 2018-09-20</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-owner-name">
+                            <p><span class="bold">Contact:</span> Jacob Jacobsson</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rfp-owner-orgname">
+                            <p><span class="bold">Organization:</span> Bajs Inc</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rfp-notes">
+                            <p><span class="bold">RFP Notes:</span></p>
+                            <p>
+                                Pellentesque et sapien in arcu venenatis commodo. Vestibulum pulvinar, nisi quis dignissim hendrerit, enim lectus tincidunt metus, id volutpat urna ligula ac neque. Mauris sed rutrum ipsum. Aenean hendrerit mollis velit id congue. Nunc ante erat, cursus
+                                eu molestie et, condimentum nec risus. Vivamus iaculis dolor pellentesque mi ultricies, eget sollicitudin justo viverra. Sed ut arcu non leo rhoncus semper. Nullam consequat lacus non ante vestibulum accumsan. Nam nec erat
+                                enim.
+                            </p>
+                        </div>
+                    </div>
 
-            </form>
+                </div>
+                <div id="user-nandler">
+                    <p>Jacob JavaScript</p>
+                    <p>jacob@bajsink.com</p>
+                    <p>Requested on 2018-09-21</p>
+
+                </div>
+            </div>
         </div>
 
     </main>
