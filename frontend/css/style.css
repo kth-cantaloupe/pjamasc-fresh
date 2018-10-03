@@ -1,0 +1,221 @@
+main {
+    background-color: #fff;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*   FOOTER */
+
+footer {
+    width: 100%;
+    margin-top: 50px;
+    bottom: 0;
+    min-height: 200px;
+    background-color: #3f47cc;
+}
+
+.copyright {
+    margin-top: 100px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding-bottom: 20px;
+}
+
+
+/*  END FOOTER */
+
+
+/*   INDEX */
+
+#myCarousel {
+    max-height: 100vh;
+}
+
+#myCarousel .item {
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.carousel-caption {
+    bottom: 45vh;
+}
+
+#home-info h1 {
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+    padding: 20px;
+}
+
+#home-info p {
+    font-size: 1.2em;
+}
+
+
+/* END INDEX */
+
+#four-o-four .container {
+    min-height: 90vh;
+}
+
+#four-o-four h1 {
+    font-size: 4em;
+    text-align: center;
+    margin-top: 30%;
+}
+
+#four-o-four h2 {
+    font-size: 3em;
+    text-align: center;
+}
+
+
+/* ABOUT PAGE */
+
+#about-info {
+    margin-top: 10vh;
+}
+
+#about-info h1 {
+    text-align: center;
+    font-size: 3em;
+    padding-bottom: 2vh;
+}
+
+#about-info p {
+    margin: 0 auto;
+    max-width: 700px;
+    font-size: 1.2em;
+    line-height: 1.3em;
+}
+
+.about-profiles {
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+
+/* ABOUT PAGE */
+
+
+/* END PRODUCT PAGE */
+
+.product {
+    margin-top: 10vh;
+    max-width: 900px;
+    background-color: #ededed;
+}
+
+.product h2 {
+    font-size: 2em;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.product-description {
+    padding: 10px;
+}
+
+.stars {
+    width: 20vh;
+    float: right;
+}
+
+.reviews {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.comment {
+    margin-top: 20px;
+}
+
+.comment-stars {
+    width: 15vh;
+    float: right;
+}
+
+.product-image {
+    width: 100%;
+}
+
+.comment-user-pic {
+    width: 40px;
+}
+
+.comment-user h3 {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.comment-user h4 {
+    font-style: italic;
+}
+
+.comment-user {
+    padding-bottom: 20px;
+}
+
+.comment-btns {
+    height: 5vh;
+}
+
+.comment-btns button {
+    float: right;
+    margin: 10px;
+}
+
+.comment-form label {
+    margin: 10px;
+}
+
+.comment-form select {
+    width: 60px;
+}
+
+
+/* END PRODUCT PAGE */
+
+
+/* PRODUCTS PAGE */
+
+#products-page {
+    margin-top: 10vh;
+}
+
+#products-page h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.article-img {
+    width: 100%;
+}
+
+.product-rating {
+    width: 10vh;
+    float: right;
+}
+
+.article-product {
+    background-color: #ededed;
+    padding: 10px;
+}
+
+.article-product h2 {
+    padding-bottom: 5px;
+}
+
+.article-product-container {
+    background-color: #fff;
+    padding: 10px;
+}
+
+
+/* END PRODUCTS PAGE */
