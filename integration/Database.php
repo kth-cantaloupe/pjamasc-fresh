@@ -6,6 +6,7 @@ class Database {
   public function __construct() {
     $this->mysqli = new mysqli('localhost', 'pjamasc', 'f2msaS9QKyplfwOh', 'pjamasc');
     $this->mysqli->set_charset('utf8');
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
   }
 
   public function getUserById($id) {
@@ -67,13 +68,16 @@ class Database {
   }
 
   public function getAllRFPs() {
-    $stmt = $this->mysqli->prepare('SELECT * FROM rfp ORDER BY rfp_creation DESC');
+    $stmt = $this->mysqli->prepare('SELECT * FROM rfp INNER JOIN user ON rfp_owner = user_id ORDER BY rfp_creation DESC');
     $stmt->execute();
     $res = $stmt->get_result();
 
     $rfps = [];
-    while ($row = $res->fetch_array(MYSQLI_ASSOC))
-      $rfps[] = new RFP($row);
+    while ($row = $res->fetch_array(MYSQLI_ASSOC)){
+      $rfp = new RFP($row);
+      $rfp->owner = new User($row);
+      $rfps[] = $rfp;
+    }
 
     return $rfps;
   }
@@ -107,7 +111,25 @@ class Database {
     $stmt->execute();
   }
 
-  public function getInstance() {
+  public function storeRFP($userid, $notes){
+    $stmt = $this->mysqli->prepare('INSERT INTO rfp (rfp_owner, rfp_notes) VALUES (?, ?)');
+    $stmt->bind_param('is', $userid, $notes);
+    $stmt->execute();
+  }
+
+  public function addUser($emailaddress, $fullname, $companyname, $companyno, $hashedpassword, $type){
+    try {
+      $stmt = $this->mysqli->prepare('INSERT INTO user (user_email, user_name, user_org_name, user_org_no, user_password, user_type) VALUES (?, ?, ?, ?, ?, ?)');
+      $stmt->bind_param('ssssss', $emailaddress, $fullname, $companyname, $companyno, $hashedpassword, $type);
+      $stmt->execute();
+    } catch (Exception $e){
+        if($this->mysqli->errno === 1062)
+          return false;
+    }
+    return $this->mysqli->insert_id;
+  }
+
+  public static function getInstance() {
     if (self::$instance == null)
       self::$instance = new Database();
 
