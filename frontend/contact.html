@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PJAMASCJ</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/bootstrap-mod.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			  <span class="sr-only">Toggle navigation</span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			</button>
+                <a class="navbar-brand" href="#">PJAMASC</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">About</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <main>
+        <div id="contact-page" class="container">
+            <h1>Contact form</h1>
+            <hr>
+            <form action="contact.php" method="POST" enctype="multipart/form-data">
+                <div class="all-form-groups">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-company-name">Company Name</label>
+                            <input type="text" id="register-company-name" name="company-name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-company-no">Company Registration Number</label>
+                            <input type="text" id="register-company-no" name="company-no" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-full-name">Full Name</label>
+                            <input type="text" id="register-full-name" name="full-name" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-telephone-number">Telephone Number</label>
+                            <input type="text" id="register-telephone-number" name="telephone-number" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-email-address">Email Address</label>
+                            <input type="email" id="register-email-address" name="email-address" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="text" id="register-password" name="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-password-confirmation">Confirm Password</label>
+                            <input type="text" id="register-password-confirmation" name="password-confirmation" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="register-rfp">Request For Proposal (*.pdf)</label>
+                            <input type="file" id="register-rfp" name="rfp" accept="application/pdf" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <button type="submit" name="submit" class="btn btn-primary">Register User</button>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="row ">
+
+        </div>
+        <div class="copyright ">
+            © 2018 Copyright: PJAMASC
+        </div>
+
+    </footer>
+
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js "></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
+</body>
+
+</html>

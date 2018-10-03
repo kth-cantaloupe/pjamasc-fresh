@@ -219,3 +219,45 @@ footer {
 
 
 /* END PRODUCTS PAGE */
+
+
+/* CONTACT PAGE */
+
+#contact-page {
+    margin-top: 10vh;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 70vh;
+}
+
+#contact-page h1 {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+#contact-page label {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#contact-page input {
+    max-width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#contact-page button {
+    display: block;
+}
+
+.all-form-groups {
+    width: 100%;
+}
+
+.sub-btn {
+    width: 100%;
+}
+
+
+/* END CONTACT PAGE */
