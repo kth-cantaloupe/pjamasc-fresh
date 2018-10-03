@@ -20,17 +20,21 @@ if(!Authentication::user()){
 }
 
 if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
-  if(!Authentication::user()){
-    $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost"=>12]), "uncomfirmed_customer");
-  } else {
-    $userid = Authentication::user()->id;
-  }
 
-  if($userid === false) {
-    $errors[] = "You are already registerd as a user. Please log in to post an RFP";
-  } else {
-      Database::getInstance()->storeRFP($userid, $_POST['notes']);
-  }
+    if (approveFile($_FILES['rfp'])) {
+        if (!Authentication::user()) {
+            $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]), "uncomfirmed_customer");
+        } else {
+            $userid = Authentication::user()->id;
+        }
+
+        if ($userid === false) {
+            $errors[] = "You are already registerd as a user. Please log in to post an RFP";
+        } else {
+            $rfdid = Database::getInstance()->storeRFP($userid, $_POST['notes']);
+            storeFile($rfpid,$_FILES['rfp']);
+        }
+    }
 }
 
 $rfps = null;
@@ -85,18 +89,17 @@ function handleRegistration($password,$name,$companyName,$email,$phoneNumber,$me
  */
 function approveFile($file){
     try {
-
         // Undefined | Multiple Files | $_FILES Corruption Attack
         // If this request falls under any of them, treat it invalid.
         if (
-            !isset($file[error]) ||
-            is_array($file[error])
+            !isset($file['error']) ||
+            is_array($file['error'])
         ) {
             throw new RuntimeException('Invalid parameters.');
         }
 
         // Check $_FILES['upfile']['error'] value.
-        switch ($file[error]) {
+        switch ($file['error']) {
             case UPLOAD_ERR_OK:
                 break;
             case UPLOAD_ERR_NO_FILE:
@@ -133,7 +136,7 @@ function approveFile($file){
 
     } catch (RuntimeException $e) {
 
-        $_SESSION[error] = $e->getMessage();
+        $errors[]  = $e->getMessage();
         return false;
     }
     return true;
@@ -169,7 +172,7 @@ function storeFile ($rfpId, $file){
     }
 
     catch (RuntimeException $e) {
-        $_SESSION[error] = $e->getMessage();
+        $errors[]  = $e->getMessage();
         return false;
     }
 }
