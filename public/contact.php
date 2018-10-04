@@ -42,15 +42,22 @@ if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
         $errors[] = $filtered;
 }
 
+if(isset($_POST['userId'])){
+  Database::getInstance()->confirmUser($_POST['userId']);
+}
+
 $rfps = null;
+$pendingUsers = null;
 if(Authentication::admin()){
   $rfps = Database::getInstance()->getAllRFPs();
+  $pendingUsers = Database::getInstance()->getPendingUsers();
 }
 
 Template::render('contact.tpl', [
   'highlightedMenuItem' => 'contact',
   'errors' => $errors,
-  'RFPs' => $rfps
+  'RFPs' => $rfps,
+  'pendingUsers' => $pendingUsers
 ]);
 
 function inputFilter($pass,$confPass,$file,$companyNo,$phone,$name,$companyName,$notes){

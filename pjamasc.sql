@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 03, 2018 at 02:22 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Host: localhost
+-- Generation Time: Oct 04, 2018 at 12:58 PM
+-- Server version: 5.7.23-0ubuntu0.16.04.1
+-- PHP Version: 7.2.9-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,17 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `event` (
   `event_date` date NOT NULL,
-  `event_title` varchar(60) COLLATE utf8_swedish_ci NOT NULL
+  `event_title` varchar(60) COLLATE utf8_swedish_ci NOT NULL,
+  `event_description` text COLLATE utf8_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`event_date`, `event_title`) VALUES
-('2018-12-24', 'Julafton'),
-('2018-12-31', 'NyÃ¥rsafton'),
-('2019-01-01', 'NyÃ¥rsdagen');
+INSERT INTO `event` (`event_date`, `event_title`, `event_description`) VALUES
+('2018-12-24', 'Julafton', ''),
+('2018-12-31', 'Nyårsafton', ''),
+('2019-01-01', 'Nyårsdagen', '');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,7 @@ CREATE TABLE `rfp` (
 --
 
 INSERT INTO `rfp` (`rfp_id`, `rfp_owner`, `rfp_notes`, `rfp_creation`) VALUES
-(1, 1, 'Hoppas ni kan hjÃ¤lpa till!', '2018-09-25 11:00:00'),
+(1, 1, 'Hoppas ni kan hjälpa till!', '2018-09-25 11:00:00'),
 (2, 1, 'hello!', '2018-10-03 12:02:31'),
 (3, 2, 'hello!', '2018-10-03 12:06:11'),
 (4, 2, 'hello!', '2018-10-03 12:07:09'),

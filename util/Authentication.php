@@ -21,4 +21,13 @@ class Authentication {
 
 		return false;
 	}
+
+	public static function customer() {
+	    $user = self::user();
+
+	    if($user !== null)
+	        return $user->type === 'customer';
+
+	    return false;
+    }
 }
