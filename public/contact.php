@@ -21,7 +21,7 @@ if(!Authentication::user()){
 
 if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
 
-    if (approveFile($_FILES['rfp'])) {
+    if (inputFilter($_POST['password'],$_POST['password-confirmation'], $_FILES['rfp'])) {
         if (!Authentication::user()) {
             $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]), "unconfirmed_customer");
         } else {
@@ -35,11 +35,7 @@ if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
             storeFile($rfpid,$_FILES['rfp']);
         }
 
-    } else {
-      $errors[] = "Fill out all field or/and attach a valid PDF file";
     }
-} else {
-    $errors[] = "Fill out all field or/and attach a valid PDF file";
 }
 
 $rfps = null;
@@ -53,35 +49,16 @@ Template::render('contact.tpl', [
   'RFPs' => $rfps
 ]);
 
-function handleRegistration($password,$name,$companyName,$email,$phoneNumber,$message,$file){
-    $exists=  false; //CHECK USER DBCALL
+function inputFilter($pass,$confPass,$file){
+    return confirmPassword($pass,$confPass);
+}
 
-    $date = date("Y-m-d H:i:s");
-    if(!$exists) {
-        $userStored = true; //DB CALL TO STORE USER, RETURN TRUE/FALSE
-        if ($userStored) {
-            $userid = 5; //GET USER DBCALL
-            $rfpAdded = true; // ADD RFP IN DB, RETURN TRUE/FALSE
-            if ($rfpAdded) {
-                $rfpID = 5;// GET RFP ID DB CALL
-                if (storeFile($rfpID, $file)) {
-                    $_SESSION[success] = "File was sent!";
-                    return true;
-                } else {
-                    // Delete User DBCALL
-                    // Delete RFP DBCALL
-                    return false;
-                }
-            } else {
-                $_SESSION[error] = "Could not send file";
-                return false;
-            }
-        }
-    }
-    else{
-        $_SESSION[error] =  "Username is taken.";
-        return false;
-    }
+function confirmPassword($pass,$confPass){
+    if($pass === $confPass AND $pass !== '' AND $confPass!=='')
+        return true;
+
+    $errors[] = "Passwords does not match.";
+    return false;
 }
 
 
@@ -140,7 +117,6 @@ function approveFile($file){
 
 
     } catch (RuntimeException $e) {
-        echo "errror 145";
         $errors[]  = $e->getMessage();
         return false;
     }
@@ -177,7 +153,6 @@ function storeFile ($rfpId, $file){
     }
 
     catch (RuntimeException $e) {
-      echo "errror 182";
         $errors[]  = $e->getMessage();
         return false;
     }

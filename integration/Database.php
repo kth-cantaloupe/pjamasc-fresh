@@ -4,7 +4,7 @@ class Database {
   private $mysqli;
 
   public function __construct() {
-    $this->mysqli = new mysqli('localhost', 'pjamasc', 'f2msaS9QKyplfwOh', 'pjamasc');
+    $this->mysqli = new mysqli('127.0.0.1', 'pjamasc', 'f2msaS9QKyplfwOh', 'pjamasc');
     $this->mysqli->set_charset('utf8');
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
   }
