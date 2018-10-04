@@ -47,6 +47,7 @@ if(isset($_POST['userId'])){
 }
 
 $rfps = null;
+$pendingUsers = null;
 if(Authentication::admin()){
   $rfps = Database::getInstance()->getAllRFPs();
   $pendingUsers = Database::getInstance()->getPendingUsers();
