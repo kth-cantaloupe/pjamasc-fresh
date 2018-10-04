@@ -1,3 +1,4 @@
+// Handles ajax and post when submit button is clicked in the add review form
 $(function() {
     $('#reviewForm').on('submit', function(event) {
         event.preventDefault();
@@ -38,6 +39,7 @@ $(function() {
     });
 });
 
+// Takes the current time and returns it in the format: YYYY-MM-DD HH:MM:SS
 function getCurrentDate() {
     var date = new Date($.now());
     return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
