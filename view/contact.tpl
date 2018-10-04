@@ -83,8 +83,7 @@
                 </div>
             </form>
         </div>
-        {/if}
-        <hr> {if Authentication::admin()}
+        {/if} {if Authentication::admin()}
         <div id="admin-contact">
             <div id="admin-rfps">
                 <h1>RFPs</h1>

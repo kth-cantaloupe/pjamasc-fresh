@@ -11,10 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PJAMASCJ</title>
-
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,7 +47,6 @@
                     </form>
                     {else}
                     <div id="user-menu">
-
                         <form action="#" id="logout-form" novalidate>
                             <p>Logged in as {Authentication::user()->name|escape}.</p>
                             <button type="submit" name="submit" class="btn btn-danger" value="Log out">Log out</button>
@@ -63,43 +60,10 @@
                             <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='contact' } class="active" {/if}><a href="contact.php">Contact</a></li>
                                 <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='about' } class="active" {/if}><a href="about.php">About</a></li>
                 </ul>
-
-
-
-
             </div>
-
             <!--/.nav-collapse -->
         </div>
     </nav>
-    <!--
-    <nav>
-        <div class="container">
-            <ul id="main-nav">
-                <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='index' } class="active" {/if}><a href="index.php">Home</a></li>
-                    <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='product_list' } class="active" {/if}><a href="product_list.php">Products</a></li>
-                        <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='calendar' } class="active" {/if}><a href="calendar.php">Calendar</a></li>
-                            <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='contact' } class="active" {/if}><a href="contact.php">Contact</a></li>
-                                <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='about' } class="active" {/if}><a href="about.php">About</a></li>
-            </ul>
-            {if !Authentication::user()}
-            <form action="#" id="login-form" novalidate>
-                <input type="email" id="login-email" class="login-form-input" placeholder="E-mail" maxlength="60">
-                <input type="password" id="login-password" class="login-form-input" placeholder="Password" maxlength="72">
-                <input type="submit" value="Log in">
-            </form>
-            {else}
-            <div id="user-menu">
-                Logged in as {Authentication::user()->name|escape}.
-                <form action="#" id="logout-form" novalidate>
-                    <input type="submit" value="Log out">
-                </form>
-            </div>
-            {/if}
-            <div style="clear:both"></div>
-        </div>
-    </nav>
-  -->
     {block name="body"}{/block}
     <footer>
         <div class="row">
