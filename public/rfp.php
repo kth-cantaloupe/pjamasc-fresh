@@ -11,10 +11,16 @@ $id = 0;
 if (isset($_GET['id']))
   $id = intval($_GET['id']);
 
+$mode = 'view';
+if (isset($_GET['mode']))
+  $mode = $_GET['mode'];
+
 $file = '../storage/rfp/' . $id . '.pdf';
 
 if (file_exists($file)) {
   header('Content-Type: application/pdf');
+  if ($mode === 'download')
+    header('Content-Disposition: attachment; filename="RFP-'.$id.'.pdf"');
   readfile($file);
 }
 

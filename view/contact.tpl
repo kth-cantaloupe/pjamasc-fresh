@@ -76,6 +76,8 @@
 					<li>{$rfp->owner->name}</li>
 					<li>{$rfp->owner->orgName}</li>
 					<li>{$rfp->notes}</li>
+					<li>[<a href="rfp.php?id={$rfp->id}&amp;mode=view">View</a>]</li>
+					<li>[<a href="rfp.php?id={$rfp->id}&amp;mode=download">Download</a>]</li>
 				</ul>
 			{/foreach}
 			{foreach from=$pendingUsers item=pUsers}
