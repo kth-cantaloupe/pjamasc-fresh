@@ -45,26 +45,44 @@ class Database {
     return $info;
   }
 
-  public function getAllProducts() {
-    $stmt = $this->mysqli->prepare('SELECT * FROM product ORDER BY product_name ASC');
-    $stmt->execute();
-    $res = $stmt->get_result();
+    public function getAllProducts() {
+        $stmt = $this->mysqli->prepare('SELECT * FROM product ORDER BY product_name ASC');
+        $stmt->execute();
+        $res = $stmt->get_result();
 
-    $products = [];
-    while ($row = $res->fetch_array(MYSQLI_ASSOC))
-      $products[] = new Product($row);
+        $products = [];
+        while ($row = $res->fetch_array(MYSQLI_ASSOC))
+            $products[] = new Product($row);
 
-    return $products;
-  }
+        return $products;
+    }
+
+    public function getProductById($id) {
+        $stmt = $this->mysqli->prepare('SELECT * FROM product WHERE product_id = ?');
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        if ($row = $res->fetch_array(MYSQLI_ASSOC))
+            return new Product($row);
+
+        return null;
+    }
 
   public function getReviewsByProduct($product) {
-    $stmt = $this->mysqli->prepare('SELECT * FROM review WHERE review_product = ? ORDER BY review_creation DESC');
+    $stmt = $this->mysqli->prepare('SELECT * FROM review INNER JOIN user ON user_id = review_author WHERE review_product = ? ORDER BY review_creation DESC');
+    $stmt->bind_param("i", $product);
     $stmt->execute();
     $res = $stmt->get_result();
 
     $reviews = [];
-    while ($row = $res->fetch_array(MYSQLI_ASSOC))
-      $reviews[] = new Review($row);
+    while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
+        $review = new Review($row);
+        $review->author = new User($row);
+        $reviews[] = $review;
+    }
+
+    return $reviews;
   }
 
   public function getAllRFPs() {
@@ -111,6 +129,14 @@ class Database {
     $stmt->execute();
   }
 
+  public function insertProductReview($author, $product, $rating, $comment) {
+      $stmt = $this->mysqli->prepare('INSERT INTO review 
+                (review_author, review_product, review_creation, review_rating, review_comment) 
+                VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?)');
+      $stmt->bind_param('iiis', $author, $product, $rating, $comment);
+      $stmt->execute();
+  }
+
   public function storeRFP($userid, $notes){
     $stmt = $this->mysqli->prepare('INSERT INTO rfp (rfp_owner, rfp_notes) VALUES (?, ?)');
     $stmt->bind_param('is', $userid, $notes);
@@ -128,6 +154,7 @@ class Database {
     }
     return $this->mysqli->insert_id;
   }
+
 
   public static function getInstance() {
     if (self::$instance == null)
