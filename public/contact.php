@@ -21,7 +21,9 @@ if(!Authentication::user()){
 
 if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
 
-    if (inputFilter($_POST['password'],$_POST['password-confirmation'], $_FILES['rfp'])) {
+
+    $filtered = inputFilter($_POST['password'],$_POST['password-confirmation'], $_FILES['rfp'], $_POST['company-no'],$_POST['telephone-number'] , $_POST['full-name'],$_POST['company-name'],$_POST['notes']);
+    if ($filtered === true) {
         if (!Authentication::user()) {
             $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]), "unconfirmed_customer");
         } else {
@@ -36,6 +38,8 @@ if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
         }
 
     }
+    else
+        $errors[] = $filtered;
 }
 
 $rfps = null;
@@ -49,17 +53,37 @@ Template::render('contact.tpl', [
   'RFPs' => $rfps
 ]);
 
-function inputFilter($pass,$confPass,$file){
-    return confirmPassword($pass,$confPass);
+function inputFilter($pass,$confPass,$file,$companyNo,$phone,$name,$companyName,$notes){
+     if(confirmPassword($pass,$confPass))
+         return "Incorrect password.";
+     elseif(approveFile($file)!==true)
+         return approveFile($file);
+     elseif(checkCompanyNo($companyNo))
+         return "Invalid company number";
+     else if(checkNumber($phone))
+         return "Invalid phone number.";
+     else if (checkEmpty($name) && checkEmpty($companyName) && checkEmpty($notes))
+         return "Fill in all forms.";
+    return true;
+
 }
 
 function confirmPassword($pass,$confPass){
-    if($pass === $confPass AND $pass !== '' AND $confPass!=='')
-        return true;
+   return $pass === $confPass && $pass !== '' && $confPass!=='';
 
-    $errors[] = "Passwords does not match.";
-    return false;
 }
+
+function checkCompanyNo($no){
+    return ctype_digit($no) && strlen($no) ==10 && $no!=='';
+}
+
+function checkNumber($no){
+    return ctype_digit($no) && $no !== '';
+}
+function checkEmpty($name){
+    return $name !=='';
+}
+
 
 
 /**
@@ -117,8 +141,7 @@ function approveFile($file){
 
 
     } catch (RuntimeException $e) {
-        $errors[]  = $e->getMessage();
-        return false;
+       return $e->getMessage();
     }
     return true;
 }
