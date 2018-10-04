@@ -39,7 +39,7 @@
                 {/foreach}
             </div>
 
-            {if Authentication::user() != null}
+            {if Authentication::customer() == true}
             <div class="comment-form form-group">
                 <form id="reviewForm" action="" method="post">
                     <input type="hidden" id="reviewProduct" value="{$product->id}"/>
