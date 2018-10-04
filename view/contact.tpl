@@ -76,9 +76,20 @@
 					<li>{$rfp->owner->name}</li>
 					<li>{$rfp->owner->orgName}</li>
 					<li>{$rfp->notes}</li>
+					<li>[<a href="rfp.php?id={$rfp->id}&amp;mode=view">View</a>]</li>
+					<li>[<a href="rfp.php?id={$rfp->id}&amp;mode=download">Download</a>]</li>
 				</ul>
 			{/foreach}
-		</ul>
+			{foreach from=$pendingUsers item=pUsers}
+				<ul>
+					<li>{$pUsers->orgName}</li>
+					<li>{$pUsers->orgName}</li>
+				</ul>
+				<form class="pendingUsers" method="POST" action="contact.php">
+					<input type="hidden" name="userId" value="{$pUsers->id}">
+					<button type="submit" name="submit">Validate User</button>
+				</form>
+			{/foreach}
 		{/if}
 	</div>
 {/block}
