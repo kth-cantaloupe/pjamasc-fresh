@@ -4,12 +4,6 @@
 	<div class="container">
 		<p>Here we show a selection of our products.</p>
 
-		{if Authentication::admin()}
-		<p>
-			[<a href="add_product.php">Add product...</a>]
-		</p>
-		{/if}
-
 		{foreach from=$products item=product}
 			<div class="product">
 				<img src="assets/images/products/{$product->id}.jpg" alt="{$product->name|escape}">
