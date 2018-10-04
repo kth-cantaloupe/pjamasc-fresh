@@ -42,15 +42,21 @@ if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
     $errors[] = "Fill out all field or/and attach a valid PDF file";
 }
 
+if(isset($_POST['userId'])){
+  Database::getInstance()->confirmUser($_POST['userId']);
+}
+
 $rfps = null;
 if(Authentication::admin()){
   $rfps = Database::getInstance()->getAllRFPs();
+  $pendingUsers = Database::getInstance()->getPendingUsers();
 }
 
 Template::render('contact.tpl', [
   'highlightedMenuItem' => 'contact',
   'errors' => $errors,
-  'RFPs' => $rfps
+  'RFPs' => $rfps,
+  'pendingUsers' => $pendingUsers
 ]);
 
 function handleRegistration($password,$name,$companyName,$email,$phoneNumber,$message,$file){

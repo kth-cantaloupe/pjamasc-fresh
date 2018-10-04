@@ -123,6 +123,18 @@ class Database {
     return $events;
   }
 
+  function getPendingUsers(){
+    $stmt = $this->mysqli->prepare('SELECT * FROM user WHERE user_type = \'unconfirmed_customer\'');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $pendingUsers = [];
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+      $pendingUsers[] = new User($row);
+    }
+    return $pendingUsers;
+  }
+
   public function updateInfo($info, $value) {
     $stmt = $this->mysqli->prepare('UPDATE info SET info_value = ? WHERE info_id = ?');
     $stmt->bind_param('si', $value, $info);
@@ -130,8 +142,8 @@ class Database {
   }
 
   public function insertProductReview($author, $product, $rating, $comment) {
-      $stmt = $this->mysqli->prepare('INSERT INTO review 
-                (review_author, review_product, review_creation, review_rating, review_comment) 
+      $stmt = $this->mysqli->prepare('INSERT INTO review
+                (review_author, review_product, review_creation, review_rating, review_comment)
                 VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?)');
       $stmt->bind_param('iiis', $author, $product, $rating, $comment);
       $stmt->execute();
@@ -156,6 +168,11 @@ class Database {
     return $this->mysqli->insert_id;
   }
 
+  function confirmUser($userId){
+    $stmt = $this->mysqli->prepare('UPDATE user SET user_type = \'customer\'WHERE user_id = ?');
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+  }
 
   public static function getInstance() {
     if (self::$instance == null)
