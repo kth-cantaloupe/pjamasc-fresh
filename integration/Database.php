@@ -115,6 +115,7 @@ class Database {
     $stmt = $this->mysqli->prepare('INSERT INTO rfp (rfp_owner, rfp_notes) VALUES (?, ?)');
     $stmt->bind_param('is', $userid, $notes);
     $stmt->execute();
+    return $this->mysqli->insert_id;
   }
 
   public function addUser($emailaddress, $fullname, $companyname, $companyno, $hashedpassword, $type){
