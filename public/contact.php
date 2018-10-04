@@ -23,7 +23,7 @@ if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
 
     if (approveFile($_FILES['rfp'])) {
         if (!Authentication::user()) {
-            $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]), "uncomfirmed_customer");
+            $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]), "unconfirmed_customer");
         } else {
             $userid = Authentication::user()->id;
         }
@@ -31,10 +31,15 @@ if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
         if ($userid === false) {
             $errors[] = "You are already registerd as a user. Please log in to post an RFP";
         } else {
-            $rfdid = Database::getInstance()->storeRFP($userid, $_POST['notes']);
+            $rfpid = Database::getInstance()->storeRFP($userid, $_POST['notes']);
             storeFile($rfpid,$_FILES['rfp']);
         }
+
+    } else {
+      $errors[] = "Fill out all field or/and attach a valid PDF file";
     }
+} else {
+    $errors[] = "Fill out all field or/and attach a valid PDF file";
 }
 
 $rfps = null;
@@ -112,7 +117,7 @@ function approveFile($file){
         }
 
         // You should also check filesize here.
-        if ($file['size'] > 1000000) {
+        if ($file['size'] > 100000000) {
             throw new RuntimeException('Exceeded filesize limit.');
         }
 
@@ -135,7 +140,7 @@ function approveFile($file){
 
 
     } catch (RuntimeException $e) {
-
+        echo "errror 145";
         $errors[]  = $e->getMessage();
         return false;
     }
@@ -172,6 +177,7 @@ function storeFile ($rfpId, $file){
     }
 
     catch (RuntimeException $e) {
+      echo "errror 182";
         $errors[]  = $e->getMessage();
         return false;
     }
