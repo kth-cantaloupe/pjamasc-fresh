@@ -39,32 +39,33 @@
                 </button>
                 <a class="navbar-brand" href="index.php">PJAMASC</a>
             </div>
-            <!--
-            <ul class="nav navbar-nav navbar-right">
-                {if !Authentication::user()}
-                <form action="#" id="login-form" novalidate>
-                    <input type="email" id="login-email" class="form-control" placeholder="E-mail" maxlength="60" style="width: 80px;">
-                    <input type="password" id="login-password" class="form-control" placeholder="Password" maxlength="72" style="width: 80px;">
-                    <button type="submit" name="submit" class="btn btn-primary" value="Log in">Log in</button>
-                </form>
-                {else}
-                <div id="user-menu">
-                    Logged in as {Authentication::user()->name|escape}.
-                    <form action="#" id="logout-form" novalidate>
-                        <button type="submit" name="submit" class="btn btn-primary" value="Log out">Log out</button>
-                    </form>
-                </div>
-                {/if}
-            </ul>
-            -->
             <div id="navbar" class="navbar-collapse collapse">
+                <ul class="navbar-form navbar-right">
+                    {if !Authentication::user()}
+                    <form action="#" id="login-form" novalidate>
+                        <input type="email" id="login-email" class="form-control" placeholder="E-mail" maxlength="60">
+                        <input type="password" id="login-password" class="form-control" placeholder="Password" maxlength="72">
+                        <button type="submit" name="submit" class="btn btn-primary" value="Log in">Log in</button>
+                    </form>
+                    {else}
+                    <div id="user-menu">
 
+                        <form action="#" id="logout-form" novalidate>
+                            <p>Logged in as {Authentication::user()->name|escape}.</p>
+                            <button type="submit" name="submit" class="btn btn-danger" value="Log out">Log out</button>
+                        </form>
+                    </div>
+                    {/if}
+                </ul>
                 <ul class="nav navbar-nav">
                     <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='product_list' } class="active" {/if}><a href="product_list.php">Products</a></li>
                         <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='calendar' } class="active" {/if}><a href="calendar.php">Calendar</a></li>
                             <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='contact' } class="active" {/if}><a href="contact.php">Contact</a></li>
                                 <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='about' } class="active" {/if}><a href="about.php">About</a></li>
                 </ul>
+
+
+
 
             </div>
 

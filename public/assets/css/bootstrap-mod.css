@@ -12,11 +12,11 @@
     padding-bottom: 5vh;
 }
 
-.navbar-collapse.collapse.in ul {
+.navbar-collapse.collapse.in.nav ul {
     margin-top: 20vh;
 }
 
-.navbar-collapse.collapsing ul {
+.navbar-collapse.collapsing.nav ul {
     margin-top: 20vh;
 }
 
@@ -30,6 +30,26 @@
     height: 200vh;
     max-height: 100vh;
     background-color: #f6f6f6;
+}
+
+.navbar-form ul {
+    margin-top: 0vh;
+}
+
+.navbar-form ul {
+    margin-top: 0vh;
+}
+
+.navbar-form .form-control {
+    display: inline-block;
+    width: 100px;
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .navbar-form .form-control {
+        width: auto;
+    }
 }
 
 .navbar-default {

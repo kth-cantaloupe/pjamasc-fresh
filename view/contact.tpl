@@ -73,12 +73,13 @@
                         </div>
                     </div>
 
-                    {if !Authentication::user()}
+
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        {if !Authentication::user()}
                         <button type="submit" name="submit" class="btn btn-primary">Register User</button> {else}
-                        <button type="submit" name="submit" class="btn btn-primary">Register RFP</button>
+                        <button type="submit" name="submit" class="btn btn-primary">Register RFP</button> {/if}
                     </div>
-                    {/if}
+
                 </div>
             </form>
         </div>
@@ -135,70 +136,36 @@
                         <p>Email:</p>
                     </div>
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>Requested on:</p>
+                        <p>Organization:</p>
                     </div>
                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
                     </div>
 
                 </div>
+                {foreach from=$pendingUsers item=pUsers}
                 <div class="row user-request">
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>Jacob JavaScript</p>
+                        <p>{$pUsers->name}</p>
                     </div>
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>jacob@bajsink.com</p>
+                        <p>{$pUsers->email}</p>
                     </div>
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>2018-09-21</p>
+                        <p>{$pUsers->orgName}</p>
                     </div>
                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                         <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-success">Y</button>
+                            <form class="pendingUsers" method="POST" action="contact.php">
+                                <input type="hidden" name="userId" value="{$pUsers->id}">
+                                <button type="submit" name="submit" class="btn btn-success">Y</button>
+                            </form>
                         </div>
                         <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-danger">N</button>
                         </div>
                     </div>
                 </div>
-                <div class="row user-request">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>Jacob JavaScript</p>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>jacob@bajsink.com</p>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>2018-09-21</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-success">Y</button>
-                        </div>
-                        <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-danger">N</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row user-request">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>Jacob JavaScript</p>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>jacob@bajsink.com</p>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <p>2018-09-21</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-success">Y</button>
-                        </div>
-                        <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-danger">N</button>
-                        </div>
-                    </div>
-                </div>
+                {/foreach}
             </div>
         </div>
         {/if}
