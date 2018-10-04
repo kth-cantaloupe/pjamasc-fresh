@@ -1,6 +1,7 @@
 <?php
 require '../require.php';
 
+// redirects if not logged in as admin
 if (!Authentication::admin()) {
   header('Location: index.php');
   exit;
@@ -8,6 +9,7 @@ if (!Authentication::admin()) {
 
 $id = 0;
 
+// Downloads rfp
 if (isset($_GET['id']))
   $id = intval($_GET['id']);
 
