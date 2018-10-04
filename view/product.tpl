@@ -10,9 +10,6 @@
         <div id="product-page" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <h2>{$product->name|escape}</h2>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <img class="stars" src="images/2-stars.png" alt="stars">
-        </div>
         <img class="product-image" src="assets/images/products/{$product->id}.jpg" alt="Picture of product">
 
         <div class="product-description">

@@ -142,11 +142,21 @@ class Database {
   }
 
   public function insertProductReview($author, $product, $rating, $comment) {
+<<<<<<< HEAD
       $stmt = $this->mysqli->prepare('INSERT INTO review
                 (review_author, review_product, review_creation, review_rating, review_comment)
+=======
+      try {
+          $stmt = $this->mysqli->prepare('INSERT INTO review 
+                (review_author, review_product, review_creation, review_rating, review_comment) 
+>>>>>>> master
                 VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?)');
-      $stmt->bind_param('iiis', $author, $product, $rating, $comment);
-      $stmt->execute();
+          $stmt->bind_param('iiis', $author, $product, $rating, $comment);
+          $stmt->execute();
+          return true;
+      } catch (Exception $e) {
+          return false;
+      }
   }
 
   public function storeRFP($userid, $notes){
