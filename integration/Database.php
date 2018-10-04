@@ -4,7 +4,7 @@ class Database {
   private $mysqli;
 
   public function __construct() {
-    $this->mysqli = new mysqli('localhost', 'pjamasc', 'f2msaS9QKyplfwOh', 'pjamasc');
+    $this->mysqli = new mysqli('127.0.0.1', 'pjamasc', 'f2msaS9QKyplfwOh', 'pjamasc');
     $this->mysqli->set_charset('utf8');
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
   }
@@ -123,6 +123,18 @@ class Database {
     return $events;
   }
 
+  function getPendingUsers(){
+    $stmt = $this->mysqli->prepare('SELECT * FROM user WHERE user_type = \'unconfirmed_customer\'');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $pendingUsers = [];
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+      $pendingUsers[] = new User($row);
+    }
+    return $pendingUsers;
+  }
+
   public function updateInfo($info, $value) {
     $stmt = $this->mysqli->prepare('UPDATE info SET info_value = ? WHERE info_id = ?');
     $stmt->bind_param('si', $value, $info);
@@ -130,17 +142,23 @@ class Database {
   }
 
   public function insertProductReview($author, $product, $rating, $comment) {
-      $stmt = $this->mysqli->prepare('INSERT INTO review 
+      try {
+          $stmt = $this->mysqli->prepare('INSERT INTO review
                 (review_author, review_product, review_creation, review_rating, review_comment) 
                 VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?)');
-      $stmt->bind_param('iiis', $author, $product, $rating, $comment);
-      $stmt->execute();
+          $stmt->bind_param('iiis', $author, $product, $rating, $comment);
+          $stmt->execute();
+          return true;
+      } catch (Exception $e) {
+          return false;
+      }
   }
 
   public function storeRFP($userid, $notes){
     $stmt = $this->mysqli->prepare('INSERT INTO rfp (rfp_owner, rfp_notes) VALUES (?, ?)');
     $stmt->bind_param('is', $userid, $notes);
     $stmt->execute();
+    return $this->mysqli->insert_id;
   }
 
   public function addUser($emailaddress, $fullname, $companyname, $companyno, $hashedpassword, $type){
@@ -155,6 +173,11 @@ class Database {
     return $this->mysqli->insert_id;
   }
 
+  function confirmUser($userId){
+    $stmt = $this->mysqli->prepare('UPDATE user SET user_type = \'customer\'WHERE user_id = ?');
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+  }
 
   public static function getInstance() {
     if (self::$instance == null)

@@ -1,7 +1,6 @@
 $(function() {
     $('#reviewForm').on('submit', function(event) {
         event.preventDefault();
-        let authorName = $('#reviewAuthorName').val();
         let comment = $('#comment').val();
         let rating = $('#select-stars').val();
         let product = $('#reviewProduct').val();
@@ -13,7 +12,7 @@ $(function() {
             product: product,
             author: authorId
         }, function (res) {
-            if(res.status == 'success' || true) { // "fuck error handling" - Adrian Zander
+            if(res.status === 'success') {
                 let date = getCurrentDate();
                 let authorName = $('#reviewAuthorName').val();
                 // create comment and add it to html dom
@@ -32,6 +31,8 @@ $(function() {
 
                 $('#select-stars').val("1");
                 $('#comment').val("");
+            } else {
+                alert("Review could not be posted! Note that you cannot post two reviews for the same product.")
             }
         });
     });
