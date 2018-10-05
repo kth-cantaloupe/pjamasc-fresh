@@ -1,7 +1,9 @@
 <?php
 class Template {
   private $data;
-
+    /*
+     * Wrapper for smarty
+     */
   public static function render($template, $data = []) {
     $smarty = new Smarty();
 		$smarty->setTemplateDir('../view');

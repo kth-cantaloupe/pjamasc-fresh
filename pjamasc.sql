@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2018 at 10:12 AM
+-- Generation Time: Oct 04, 2018 at 12:58 PM
 -- Server version: 5.7.23-0ubuntu0.16.04.1
 -- PHP Version: 7.2.9-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -30,17 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `event` (
   `event_date` date NOT NULL,
-  `event_title` varchar(60) COLLATE utf8_swedish_ci NOT NULL
+  `event_title` varchar(60) COLLATE utf8_swedish_ci NOT NULL,
+  `event_description` text COLLATE utf8_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`event_date`, `event_title`) VALUES
-('2018-12-24', 'Julafton'),
-('2018-12-31', 'Nyårsafton'),
-('2019-01-01', 'Nyårsdagen');
+INSERT INTO `event` (`event_date`, `event_title`, `event_description`) VALUES
+('2018-12-24', 'Julafton', ''),
+('2018-12-31', 'Nyårsafton', ''),
+('2019-01-01', 'Nyårsdagen', '');
 
 -- --------------------------------------------------------
 
@@ -60,9 +61,10 @@ CREATE TABLE `info` (
 --
 
 INSERT INTO `info` (`info_id`, `info_title`, `info_value`, `info_weight`) VALUES
-(1, 'Telefonnummer', '08 555 55 55', 0),
-(2, 'E-postadress', 'info@pjamasc.se', 1),
-(3, 'Besökadress', 'ZZZZZZZZ', 2);
+(1, 'Telephone', '08 555 55 55', 3),
+(2, 'E-mail', 'info@pjamasc.se', 1),
+(3, 'Address', 'ZZZZZZZZ', 2),
+(4, 'Description', 'Här kan man skriva om företaget och annat skoj som man kan komma på......', 0);
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,7 @@ CREATE TABLE `rfp` (
   `rfp_id` int(11) NOT NULL,
   `rfp_owner` int(11) DEFAULT NULL,
   `rfp_notes` text COLLATE utf8_swedish_ci NOT NULL,
-  `rfp_creation` datetime NOT NULL
+  `rfp_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
@@ -123,7 +125,12 @@ CREATE TABLE `rfp` (
 --
 
 INSERT INTO `rfp` (`rfp_id`, `rfp_owner`, `rfp_notes`, `rfp_creation`) VALUES
-(1, 1, 'Hoppas ni kan hjälpa till!', '2018-09-25 11:00:00');
+(1, 1, 'Hoppas ni kan hjälpa till!', '2018-09-25 11:00:00'),
+(2, 1, 'hello!', '2018-10-03 12:02:31'),
+(3, 2, 'hello!', '2018-10-03 12:06:11'),
+(4, 2, 'hello!', '2018-10-03 12:07:09'),
+(25, 2, '', '2018-10-03 14:02:40'),
+(26, 2, '', '2018-10-03 14:03:01');
 
 -- --------------------------------------------------------
 
@@ -146,7 +153,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_email`, `user_name`, `user_org_name`, `user_org_no`, `user_password`, `user_type`) VALUES
-(1, 'benter@kth.se', 'William', 'Cantaloupe', '5555550000', '$2y$12$DWDeZyfb9BebP8LkYTfXoO6iYFnAdwENFS1mw2Sm8FMapZWAwmIwi', 'admin');
+(1, 'benter@kth.se', 'William', 'Cantaloupe', '5555550000', '$2y$12$DWDeZyfb9BebP8LkYTfXoO6iYFnAdwENFS1mw2Sm8FMapZWAwmIwi', 'admin'),
+(2, 'petta@mail.com', 'Peter Svensson', 'KTH', '6666', '$2y$12$FwNHG8Mj2XaZvgkUmNRG5eIBtfOhLx4Me/PGkePn08Szg80jr5tKC', 'customer');
 
 --
 -- Indexes for dumped tables
@@ -200,7 +208,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `info`
 --
 ALTER TABLE `info`
-  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -212,13 +220,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `rfp`
 --
 ALTER TABLE `rfp`
-  MODIFY `rfp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rfp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables

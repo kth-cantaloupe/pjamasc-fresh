@@ -7,7 +7,7 @@ $(function() {
 			$('#login-password').removeClass('form-error');
 
 			if (res.status === 'success') {
-				document.location.reload();
+				window.location = window.location.href;
 			} else if (res.code === 1) {
 				$('#login-email').addClass('form-error').focus();
 			} else if (res.code === 2) {
@@ -20,7 +20,7 @@ $(function() {
 		event.preventDefault();
 
 		$.post('logout.php', function() {
-			document.location.reload();
+		window.location = window.location.href;
 		});
 	});
 });

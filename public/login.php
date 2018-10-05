@@ -2,7 +2,7 @@
 require '../require.php';
 
 header('Content-Type: application/json');
-
+// Tries to log in the user when login button is clicked
 if (isset($_POST['email']) && isset($_POST['password'])) {
 	$user = Database::getInstance()->getUserByEmail($_POST['email']);
 
