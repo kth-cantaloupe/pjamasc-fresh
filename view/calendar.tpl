@@ -1,10 +1,9 @@
 {extends file="layout.tpl"}
 
-<!--
+
 {block name="scripts"}
     <script src="assets/js/add_event.js"></script>
 {/block}
--->
 
 
 {block name="stylesheets"}

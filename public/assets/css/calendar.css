@@ -1,11 +1,4 @@
-.calendar {
-	border-top: black solid 1px;
-	border-bottom: black solid 1px;
-	font-family: 'Noto Sans', sans-serif;
-	font-size: 12pt;
-	margin-top: 10px;
-}
-
+/* Event form */
 #eventFormBox {
     padding: 15px;
 }
@@ -14,6 +7,15 @@
     margin: 5px;
     font-family: 'Noto Sans', sans-serif;
 }
+
+#event-description {
+    width: 50%;
+}
+
+/* End Event form*/
+
+/* Event information from calendar */
+
 #eventDescription, #eventTitle{
     text-align: center;
     font-family: 'Noto Sans', sans-serif;
@@ -31,9 +33,19 @@
     font-size: 12pt;  
 }
 
-#event-description {
-    width: 50%;
+/* Event information from calendar */
+
+
+/* Calendar */
+
+.calendar {
+	border-top: black solid 1px;
+	border-bottom: black solid 1px;
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 12pt;
+	margin-top: 10px;
 }
+
 .calendar-week-days div {
 	float: left;
 	width: 14.286%;
@@ -87,6 +99,9 @@
 	float: right;
 	text-decoration: underline;
 }
+/* End Calendar*/
+
+/* Media query for calendar when width less then 600px */
 
 @media (max-width: 600px) {
 	.calendar {
@@ -130,6 +145,6 @@
 		display: inline;
 	}
     
-    
+/* End Media query for calendar when width less then 600px */  
     
 }
