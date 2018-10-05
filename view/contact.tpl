@@ -157,7 +157,7 @@
                         <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
                             <form class="pendingUsers" method="POST" action="contact.php">
                                 <input type="hidden" name="userId" value="{$pUsers->id}">
-                                <button type="submit" name="submit" class="btn btn-success">Y</button>
+                                <button type="submit" name="submit" class="btn btn-success">Approve</button>
                             </form>
                         </div>
                         <div class="col-xs-2 col-sm-6 col-md-6 col-lg-6">
