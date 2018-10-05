@@ -25,26 +25,30 @@ if(!Authentication::user()){
  *
  */
 if (Arrays::areset($_POST, $formFields) && isset($_FILES['rfp'])) {
-    $filtered = inputFilter($_POST['password'],$_POST['password-confirmation'], $_FILES['rfp'], $_POST['company-no'],$_POST['telephone-number'] , $_POST['full-name'],$_POST['company-name'],$_POST['notes']);
-    if ($filtered === true) {
-        if (!Authentication::user()) {
-            $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]), "unconfirmed_customer");
-        } else {
-            $userid = Authentication::user()->id;
-        }
+    $filtered = null;
 
-        if ($userid === false) {
-            $errors[] = "You are already registerd as a user. Please log in to post an RFP";
-        } else {
-            $rfpid = Database::getInstance()->storeRFP($userid, $_POST['notes']);
-            $stored = storeFile($rfpid,$_FILES['rfp']);
-            if($stored==false)
-                $error[]=$stored;
-        }
-
+    if (!Authentication::user()) {
+        $filtered = inputFilter($_POST['password'],$_POST['password-confirmation'], $_FILES['rfp'], $_POST['company-no'],$_POST['telephone-number'] , $_POST['full-name'],$_POST['company-name'],$_POST['notes']);
+        if ($filtered === true)
+          $userid = Database::getInstance()->addUser($_POST['email-address'], $_POST['full-name'], $_POST['company-name'], $_POST['company-no'], password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]), "unconfirmed_customer");
+        else
+          $errors[] = $filtered;
+    } else {
+        $filtered = inputFilter('x', 'x', $_FILES['rfp'], '1234567890', '123', 'a', 'a', '');
+        if ($filtered === true)
+          $userid = Authentication::user()->id;
+        else
+          $errors[] = $filtered;
     }
-    else
-        $errors[] = $filtered;
+
+    if ($userid === false) {
+        $errors[] = "You are already registerd as a user. Please log in to post an RFP";
+    } else {
+        $rfpid = Database::getInstance()->storeRFP($userid, $_POST['notes']);
+        $stored = storeFile($rfpid,$_FILES['rfp']);
+        if($stored==false)
+            $error[]=$stored;
+    }
 }
 
 /*
@@ -91,15 +95,15 @@ Template::render('contact.tpl', [
  *
  */
 function inputFilter($pass,$confPass,$file,$companyNo,$phone,$name,$companyName,$notes){
-     if(confirmPassword($pass,$confPass))
+     if(!confirmPassword($pass,$confPass))
          return "Incorrect password.";
      elseif(approveFile($file)!==true)
          return approveFile($file);
-     elseif(checkCompanyNo($companyNo))
+     elseif(!checkCompanyNo($companyNo))
          return "Invalid company number";
-     else if(checkNumber($phone))
+     else if(!checkNumber($phone))
          return "Invalid phone number.";
-     else if (checkEmpty($name) && checkEmpty($companyName) && checkEmpty($notes))
+     else if (!checkEmpty($name) && !checkEmpty($companyName))
          return "Fill in all forms.";
     return true;
 
@@ -122,7 +126,7 @@ function confirmPassword($pass,$confPass){
  * @return bool - returns true or false depending on if the check failed or passed
  */
 function checkCompanyNo($no){
-    return ctype_digit($no) && strlen($no) ==10 && checkEmpty($no);
+    return ctype_digit($no) && strlen($no) ==10;
 }
 
 /**

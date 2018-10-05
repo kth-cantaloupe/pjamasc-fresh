@@ -3,25 +3,23 @@
 {/block} {block name="stylesheets"}
 <link rel="stylesheet" href="assets/css/about.css"> {/block} {block name="body"}
 <main>
-    <div id="about-info" class="container">
-        <h1>About us</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut efficitur orci. Nullam lobortis est dui, a finibus urna imperdiet eget. Vestibulum ultrices nulla vel risus aliquet, sit amet semper purus venenatis. Pellentesque ut turpis at ipsum tempor
-            vulputate. Suspendisse semper lectus ac ante rhoncus, id interdum lectus volutpat. Donec porttitor facilisis enim, in semper risus mattis auctor. Vestibulum congue sed odio nec commodo. Vestibulum vitae vulputate magna, eu bibendum nisi. Suspendisse
-            in sodales tortor. Sed vehicula tempus eros, nec blandit urna maximus ac. Nunc tempus sed tellus vel vehicula. Vivamus eu arcu rhoncus, pulvinar tellus sit amet, posuere purus. Fusce nec ullamcorper massa. Phasellus rhoncus sagittis malesuada.
-        </p>
-
-        <button type="button" class="btn btn-primary">Edit</button>
-
-        <div id="about-admin">
-            <form action="" method="get">
-                <div class="form-group">
-                    <label for="about-text">About text:</label>
-                    <textarea class="form-control" rows="5" id="about-text"></textarea>
-                    <button type="submit" name="submit" class="btn btn-primary">Submit change</button>
-                </div>
-            </form>
+  <div class="container">
+    {foreach from=$info item=infoItem}
+      <div class="panel panel-default" data-info-id="{$infoItem->id}">
+        <div class="panel-heading">
+          {$infoItem->title|escape}
         </div>
+        <div class="panel-body">
+          {$infoItem->value|escape}
+        </div>
+        {if Authentication::admin()}
+          <div class="panel-footer">
+            <input type="button" value="Edit..." class="btn btn-primary about-info-edit-button">
+          </div>
+        {/if}
+      </div>
+    {/foreach}
+
 
         <div class="about-profiles">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
@@ -67,14 +65,4 @@
         </div>
     </div>
 </main>
-<div class="container">
-    {foreach from=$info item=infoItem}
-    <div class="about-info" data-info-id="{$infoItem->id}">
-        <h2>{$infoItem->title|escape}</h2>
-        <p>{$infoItem->value|escape}</p>
-        {if Authentication::admin()}
-        <input type="button" value="Edit..."> {/if}
-    </div>
-    {/foreach}
-</div>
 {/block}
