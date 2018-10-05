@@ -1,6 +1,17 @@
 <?php
 require '../require.php';
 
+if(isset($_POST["event-name"])) {
+    $success = Database::getInstance()->insertEvent($_POST["event-name"],$_POST["event-date"],$_POST["event-description"]);
+    header('Content-Type: application/json');
+    
+    if($success)
+        echo json_encode(['status'=>'success']);
+    else
+        echo json_encode(['status'=>'failed']);
+    exit;
+}
+
 $time = time();
 $year = date('Y', $time);
 $month = date('m', $time);
@@ -30,5 +41,6 @@ foreach ($calendar->weeks as $week)
 Template::render('calendar.tpl', [
   'highlightedMenuItem' => 'calendar',
   'calendar' => $calendar,
-  'events' => $eventsByDate
+  'events' => $eventsByDate,
+  'month' => $month
 ]);

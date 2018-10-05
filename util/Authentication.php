@@ -1,4 +1,5 @@
 <?php
+
 class Authentication {
 	private static $user;
 
@@ -14,6 +15,7 @@ class Authentication {
 	}
 
 	public static function admin() {
+        
 		$user = self::user();
 
 		if ($user !== null)

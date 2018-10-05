@@ -6,12 +6,41 @@
 	margin-top: 10px;
 }
 
+#eventFormBox {
+    padding: 15px;
+}
+
+.form-group {
+    margin: 5px;
+    font-family: 'Noto Sans', sans-serif;
+}
+#eventDescription, #eventTitle{
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    
+}
+
+#eventTitle, #formTitle{
+    margin-top: 10px;
+    font-size: 15pt; 
+    margin-bottom: 5px;
+}
+
+#eventDescription {
+    margin: 15px;
+    font-size: 12pt;  
+}
+
+#event-description {
+    width: 50%;
+}
 .calendar-week-days div {
 	float: left;
 	width: 14.286%;
 	text-align: center;
 	font-family: 'Palanquin Dark', sans-serif;
 	padding: 10px 0;
+    
 }
 
 .calendar-week {
@@ -25,6 +54,10 @@
 	height: 80px;
 	padding: 5px;
 	box-sizing: border-box;
+}
+
+.calendar-day.eventcolor {
+    background-color: #8bc172;
 }
 
 .calendar-day.is-today {
@@ -96,4 +129,7 @@
 	.calendar-image span {
 		display: inline;
 	}
+    
+    
+    
 }
