@@ -38,6 +38,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="navbar-form navbar-right">
+                  <li>
                     {if !Authentication::user()}
                     <form action="#" id="login-form" novalidate>
                         <input type="email" id="login-email" class="form-control" placeholder="E-mail" maxlength="60">
@@ -52,6 +53,7 @@
                         </form>
                     </div>
                     {/if}
+                  </li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li{if isset($highlightedMenuItem) && $highlightedMenuItem==='product_list' } class="active" {/if}><a href="product_list.php">Products</a></li>
