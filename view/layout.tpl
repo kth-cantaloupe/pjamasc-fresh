@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 
 <head>
     <script src="assets/js/jquery.js"></script>
@@ -21,7 +21,7 @@
          <![endif]-->
     <link rel="stylesheet" href="assets/css/bootstrap-mod.css">
     <link rel="stylesheet" href="assets/css/style.css"> {block name="stylesheets"}{/block}
-    <title>{block name="title"}{/block}</title>
+    <title>{block name="title"}PJAMASC{/block}</title>
 </head>
 
 <body>
